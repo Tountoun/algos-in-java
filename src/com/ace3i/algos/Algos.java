@@ -28,4 +28,21 @@ public class Algos {
         }
         return null;
     }
+
+    public static int findClosestToZero(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+
+        int closestToZero = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            if (Math.abs(nums[i]) < Math.abs(closestToZero) ||
+                    (Math.abs(nums[i]) == Math.abs(closestToZero) && nums[i] > 0)) {
+                closestToZero = nums[i];
+            }
+        }
+
+        return closestToZero;
+    }
 }
