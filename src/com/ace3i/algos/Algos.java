@@ -11,7 +11,11 @@ public class Algos {
         if (amount <= 1)
             return null;
         if (amount >= 10) {
-            change.setBill10(Math.floorDiv(amount, 10));
+            if (amount % 2 != 0) {
+                change.setBill5(1);
+                amount -= 5;
+            }
+            change.setBill10(amount / 10);
             amount %= 10;
             if (amount == 0)
                 return change;
@@ -19,7 +23,7 @@ public class Algos {
         for (int i = 0; i < checkArray.length; i++) {
             if (checkArray[i] == amount ) {
                 if (amount % 2 != 0) {
-                    change.setBill5(1);
+                    change.setBill5(change.getBill5() + 1);
                     amount -= 5;
                 }
                 change.setCoins2(amount / 2);
