@@ -1,6 +1,8 @@
 package com.ace3i.algos;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Algos {
 
@@ -51,20 +53,21 @@ public class Algos {
     }
 
     public static int findNetworkEndpoint(int startNodeId, int[] fromIds, int[] toIds) {
+        List<Integer> visited = new ArrayList<>();
         int currentNodeId = startNodeId;
-        int[] visited = new int[fromIds.length];
         int visitedIndex = 0;
 
         int nodeIndex = getNodeIndexInFromIds(currentNodeId, fromIds);
         while (nodeIndex != -1) {
-            visited[visitedIndex++] = currentNodeId;
+            visited.add(currentNodeId);
             int nextNodeId = toIds[nodeIndex];
-            if (isVisited(nextNodeId, visited)) {
+            if (visited.contains(nextNodeId)) {
                 return currentNodeId;
             }
             currentNodeId = nextNodeId;
             nodeIndex = getNodeIndexInFromIds(currentNodeId, fromIds);
         }
+
         return currentNodeId;
     }
 
@@ -75,11 +78,5 @@ public class Algos {
         }
         return -1;
     }
-    private static boolean isVisited(int nodeId, int[] visited) {
-        for (int i = 0; i < visited.length; i++) {
-            if (visited[i] == nodeId)
-                return true;
-        }
-        return false;
-    }
+
 }
