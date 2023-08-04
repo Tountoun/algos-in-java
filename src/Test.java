@@ -5,9 +5,10 @@ import java.util.Arrays;
 
 public class Test {
     public static void main(String[] args) {
+        // {1, 7, 3, 4, 2, 6, 9}
+        int[] fromIds = {1, 5, 8, 2, 4};
+        int[] toIds = {8, 1, 2, 4, 5};
 
-        int closestToZero = Algos.findClosestToZero(new int[]{4, -1, 6, 7, 9, 10, -5, -2, 1});
-
-        System.out.println(closestToZero);
+        System.out.println(Algos.findNetworkEndpoint(5, fromIds, toIds));
     }
 }

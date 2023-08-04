@@ -49,4 +49,37 @@ public class Algos {
 
         return closestToZero;
     }
+
+    public static int findNetworkEndpoint(int startNodeId, int[] fromIds, int[] toIds) {
+        int currentNodeId = startNodeId;
+        int[] visited = new int[fromIds.length];
+        int visitedIndex = 0;
+
+        int nodeIndex = getNodeIndexInFromIds(currentNodeId, fromIds);
+        while (nodeIndex != -1) {
+            visited[visitedIndex++] = currentNodeId;
+            int nextNodeId = toIds[nodeIndex];
+            if (isVisited(nextNodeId, visited)) {
+                return currentNodeId;
+            }
+            currentNodeId = nextNodeId;
+            nodeIndex = getNodeIndexInFromIds(currentNodeId, fromIds);
+        }
+        return currentNodeId;
+    }
+
+    private static int getNodeIndexInFromIds(int nodeId, int[] fromIds) {
+        for (int i = 0; i < fromIds.length; i++) {
+            if (fromIds[i] == nodeId)
+                return i;
+        }
+        return -1;
+    }
+    private static boolean isVisited(int nodeId, int[] visited) {
+        for (int i = 0; i < visited.length; i++) {
+            if (visited[i] == nodeId)
+                return true;
+        }
+        return false;
+    }
 }
