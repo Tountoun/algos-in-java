@@ -2,6 +2,7 @@ package com.ace3i.algos;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class Algos {
@@ -55,7 +56,6 @@ public class Algos {
     public static int findNetworkEndpoint(int startNodeId, int[] fromIds, int[] toIds) {
         List<Integer> visited = new ArrayList<>();
         int currentNodeId = startNodeId;
-        int visitedIndex = 0;
 
         int nodeIndex = getNodeIndexInFromIds(currentNodeId, fromIds);
         while (nodeIndex != -1) {
@@ -77,6 +77,34 @@ public class Algos {
                 return i;
         }
         return -1;
+    }
+
+    public static String palindromeChecker(String s, List<Integer> startIndexes, List<Integer> endIndexes, List<Integer> subs) {
+        String result = "";
+        for (int i = 0; i < startIndexes.size(); i++) {
+            String str = s.substring(startIndexes.get(i), endIndexes.get(i) + 1);
+            int sub = subs.get(i);
+            if (str.length() == 1) {
+                result += "1";
+            } else {
+                HashMap<String, Integer> keyValues = new HashMap<>();
+                for (int j = 0; j < str.length(); j++) {
+                    String letter = String.valueOf(str.charAt(j));
+                    if (keyValues.containsKey(letter)) {
+                        keyValues.put(letter, keyValues.get(letter) + 1);
+                    } else {
+                        keyValues.put(letter, 1);
+                    }
+                }
+                long odds = keyValues.values().stream().filter(value -> value % 2 != 0).count();
+                if (sub > (odds / 2) || sub == (odds / 2)) {
+                    result += "1";
+                } else {
+                    result += "0";
+                }
+            }
+        }
+        return result;
     }
 
 }
