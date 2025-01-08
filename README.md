@@ -6,3 +6,4 @@ List of algorithms implemented
 - Check whether a string is palindromic
 - Find the end point of a network
 - Find the optimal change
+- Find the closest number to zero in an array of negative and positive numbers
