@@ -9,5 +9,7 @@ public class Test {
         System.out.println(Algos.palindromeChecker("xxdnssuqevu", List.of(0), List.of(10), List.of(3)));
         System.out.println(Algos.palindromeChecker("bcba", List.of(1, 2, 1), List.of(3, 3, 1), List.of(2, 0, 0)));
 
+        System.out.println(DP.longestIncreasingSubsequence(new int[]{5, 2, 1, 3, 6, 9}));
+
     }
 }
